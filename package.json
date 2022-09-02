@@ -2,8 +2,6 @@
   "name": "vscode-svgr",
   "version": "1.0.0",
   "license": "MIT",
-  "displayName": "vscode-svgr",
-  "publisher": "wood3n",
   "description": "vscode svgr extension",
   "author": {
     "name": "wood3n",
@@ -16,10 +14,17 @@
     "svgr"
   ],
   "homepage": "https://github.com/wood3n/vscode-svgr#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wood3n/vscode-svgr.git"
+  },
   "bugs": {
     "url": "https://github.com/wood3n/vscode-svgr/issues",
     "email": "wangkka1@163.com"
   },
+  "displayName": "vscode-svgr",
+  "publisher": "wood3n",
+  "icon": "images/favicon.png",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -27,16 +32,52 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-svgr.helloWorld"
+    "onCommand:vscode-svgr.svgr",
+    "onCommand:vscode-svgr.svgr-ts"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "svg",
+        "extensions": [".svg"]
+      }
+    ],
     "commands": [
       {
-        "command": "vscode-svgr.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-svgr.svgr",
+        "title": "生成 react 组件"
+      },
+      {
+        "command": "vscode-svgr.svgr-ts",
+        "title": "生成 ts-react 组件"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vscode-svgr.svgr",
+          "when": "resourceExtname == .svg",
+          "group": "1_modification@100"
+        },
+        {
+          "command": "vscode-svgr.svgr-ts",
+          "when": "resourceExtname == .svg",
+          "group": "1_modification@100"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "vscode-svgr.svgr",
+          "title": "生成组件",
+          "when": "resourceExtname == .svg",
+          "icon": {
+            "light": "images/transform.svg",
+            "dark": "images/transform.svg"
+          }
+        }
+      ]
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

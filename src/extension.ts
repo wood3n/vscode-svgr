@@ -13,14 +13,21 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  const disposable = vscode.commands.registerCommand('vscode-svgr.helloWorld', () => {
+  const disposableSvgr = vscode.commands.registerCommand('vscode-svgr.svgr', () => {
     // The code you place here will be executed every time your command is executed
     // Display a message box to the user
     // eslint-disable-next-line
-    vscode.window.showInformationMessage('Hello World from vscode-svgr!');
+    vscode.window.showInformationMessage('生成组件');
   });
 
-  context.subscriptions.push(disposable);
+  const disposableSvgrts = vscode.commands.registerCommand('vscode-svgr.svgr-ts', () => {
+    // The code you place here will be executed every time your command is executed
+    // Display a message box to the user
+    // eslint-disable-next-line
+    vscode.window.showInformationMessage('生成 TS 组件');
+  });
+
+  context.subscriptions.push(disposableSvgr, disposableSvgrts);
 }
 
 // this method is called when your extension is deactivated
